@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+
+  fpl_stats_frontend:
+    build:
+      context: ../../fpl_stats_frontend/src
+      dockerfile: Dockerfile
+    image: fpl_stats_frontend
+    command: sh -c "yarn start | cat"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./app:/usr/src/app
+    ports:
+      - 3000:3000
+
+  cdn:
+    image: fpl_stats_frontend
+    build:
+      context: ../../fpl_stats_frontend/src
+      dockerfile: cdn/Dockerfile
+    volumes:
+      - ./app/build/static/js:/usr/share/nginx/html/js
+      - ./app/build/static/css:/usr/share/nginx/html/css
