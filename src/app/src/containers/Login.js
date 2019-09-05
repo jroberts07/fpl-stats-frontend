@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
+
+import FplStatsApi from "../components/FplStatsApi";
 import "./Login.css";
 
 export default class Login extends Component {
@@ -7,13 +9,18 @@ export default class Login extends Component {
     super(props);
 
     this.state = {
-      entry_id: "",
-      player_cookie: ""
+      entryId: "",
+      playerCookie: "",
+      showLoginAlert: false
     };
   }
 
+  setShowLoginAlert(show) {
+    this.setState({showLoginAlert: show});
+  }
+
   validateForm() {
-    return this.state.entry_id.length > 0 && this.state.player_cookie.length > 0;
+    return this.state.entryId.length > 0 && this.state.playerCookie.length > 0;
   }
 
   handleChange = event => {
@@ -24,38 +31,53 @@ export default class Login extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    localStorage.setItem('entry_id', this.state.entry_id);
-    this.props.userHasAuthenticated(true);
-    this.props.history.push("/");
+    FplStatsApi.entryData(this.state.entryId, this.state.playerCookie)
+      .then((rsp) => {
+        localStorage.setItem('entryId', this.state.entryId);
+        localStorage.setItem('playerCookie', this.state.playerCookie);
+        localStorage.setItem('playerName', rsp.data.name)
+        localStorage.setItem('playerLeagues', JSON.stringify(rsp.data.leagues))
+        this.props.userHasAuthenticated(true);
+        this.props.setPlayerData(rsp.data.name, rsp.data.leagues);
+        this.props.history.push("/");
+      })
+      .catch(() => {
+        this.setShowLoginAlert(true)
+      });
   }
 
   render() {
     return (
       <div className="login">
         <form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="entry_id" bsSize="large">
+          <Form.Group controlId="entryId">
             <Form.Label>Entry ID:</Form.Label>
             <Form.Control
               autoFocus
-              value={this.state.entry_id}
+              value={this.state.entryId}
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Form.Group controlId="player_cookie" bsSize="large">
+          <Form.Group controlId="playerCookie">
             <Form.Label>Player Cookie:</Form.Label>
             <Form.Control
-              value={this.state.player_cookie}
+              value={this.state.playerCookie}
               onChange={this.handleChange}
             />
           </Form.Group>
           <Button
             block
-            bsSize="large"
             disabled={!this.validateForm()}
             type="submit"
           >
             Login
           </Button>
+          <br></br>
+          {this.state.showLoginAlert &&
+          <Alert variant="danger" onClose={() => this.setShowLoginAlert(false)} dismissible>
+            Ooops! Login Failed.
+          </Alert>
+          }
         </form>
       </div>
     );
