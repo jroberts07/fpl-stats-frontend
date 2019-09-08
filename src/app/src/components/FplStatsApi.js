@@ -6,6 +6,6 @@ const apiClient = axios.create({
 
 export default {
     entryData(EntryId, playerCookie) {
-            return apiClient.get(`/entry_data/${EntryId}?player_id=${playerCookie}`)
+            return apiClient.get(`/entry_data/${EntryId}?player_cookie=${playerCookie}`)
         }
 }
