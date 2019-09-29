@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 
 import FplStatsApi from "../components/FplStatsApi";
-import "./Login.css";
 
 export default class Login extends Component {
   constructor(props) {

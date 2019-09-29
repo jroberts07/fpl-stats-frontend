@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 
-import "./App.css";
 import Routes from "./Routes";
+
+import "./css/main.css";
 
 class App extends Component {
   constructor(props) {
