@@ -50,7 +50,7 @@ export default class Login extends Component {
       <div className="login">
         <form onSubmit={this.handleSubmit}>
           <Form.Group controlId="entryId">
-            <Form.Label>Entry ID:</Form.Label>
+            <Form.Label>Entry ID:</Form.Label><a href='#'><i className="float-right fa fa-question-circle"></i></a>
             <Form.Control
               autoFocus
               value={this.state.entryId}
@@ -58,7 +58,7 @@ export default class Login extends Component {
             />
           </Form.Group>
           <Form.Group controlId="playerCookie">
-            <Form.Label>Player Cookie:</Form.Label>
+            <Form.Label>Player Cookie:</Form.Label><a href='#'><i className="float-right fa fa-question-circle"></i></a>
             <Form.Control
               value={this.state.playerCookie}
               onChange={this.handleChange}

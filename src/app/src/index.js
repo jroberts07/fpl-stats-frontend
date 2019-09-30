@@ -6,6 +6,7 @@ import App from "./App.js";
 import * as serviceWorker from './serviceWorker';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 ReactDOM.render(
     <Router>

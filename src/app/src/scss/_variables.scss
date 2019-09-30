@@ -1,0 +1,12 @@
+
+$text-color: white;
+$sub-menu-color: #ff2882;
+$nav-color: #37003c;
+$theme-colors: (
+  "primary": #02894e,
+  "secondary": #05f0ff
+);
+.fa {
+    color: #37003c;;
+  }
+@import "node_modules/bootstrap/scss/bootstrap";
