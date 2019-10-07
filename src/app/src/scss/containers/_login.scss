@@ -1,10 +1,63 @@
 @media all and (min-width: 480px) {
-    .login {
-      padding: 60px 0;
-    }
-  
-    .login form {
-      margin: 0 auto;
-      max-width: 320px;
-    }
+  .login {
+    padding: 60px 0;
   }
+
+  .login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .login form {
+    margin-top: 5%;
+  }
+
+  .popup-content {
+    /*Over-ride imported style from library*/
+    width: 90% !important;
+  }
+}
+
+.fa-question-circle {
+  cursor: pointer;
+}
+
+.popup-content {
+  border-radius: 18px;
+  /*Over-ride imported style from library*/
+  border: 2px solid $nav-color !important;
+}
+
+.modal {
+  position: relative;
+  display: block;
+  padding-right: 3%;
+  padding-left: 3%  ;
+}
+
+.modal > .header {
+  width: 100%;
+  border-bottom: 1px solid $primary;
+  text-align: center;
+  padding: 5px;
+}
+
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -0.5px;
+  font-size: 24px;
+  background: $primary;
+  border-radius: 18px;
+}
+  

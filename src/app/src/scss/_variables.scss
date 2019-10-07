@@ -2,9 +2,11 @@
 $text-color: white;
 $sub-menu-color: #ff2882;
 $nav-color: #37003c;
+$primary: #02894e;
+$secondary: #05f0ff;
 $theme-colors: (
-  "primary": #02894e,
-  "secondary": #05f0ff
+  "primary": $primary,
+  "secondary": $secondary
 );
 .fa {
     color: #37003c;;
