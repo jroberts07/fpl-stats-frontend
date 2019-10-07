@@ -16,7 +16,7 @@ services:
       - 3000:3000
 
   cdn:
-    image: fpl/fpl-stats-frontend
+    image: fpl/fpl-stats-frontend-cdn
     build:
       context: ../../fpl-stats-frontend/src
       dockerfile: cdn/Dockerfile

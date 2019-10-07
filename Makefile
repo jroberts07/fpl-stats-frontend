@@ -7,7 +7,7 @@ help:
 
 build: ## Build docker images
 	@docker-compose build fpl-stats-frontend
-	@docker run -it --rm -w /app -v $(PWD)/src/app:/app fpl-stats-frontend sh -c "yarn install && yarn build"
+	@docker run -it --rm -w /app -v $(PWD)/src/app:/app fpl/fpl-stats-frontend sh -c "yarn install && yarn build"
 	@docker-compose build cdn
 
 run: ## Runs the code in a container

@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 
-import "./App.css";
 import Routes from "./Routes";
+
+import "./css/main.css";
 
 class App extends Component {
   constructor(props) {
@@ -59,7 +60,7 @@ class App extends Component {
     return (
       !this.state.isAuthenticating &&
       <div className="app container">
-        <Navbar bg="light">
+        <Navbar collapseOnSelect expand="sm">
           <Navbar.Brand href="/">FPL Stats</Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
