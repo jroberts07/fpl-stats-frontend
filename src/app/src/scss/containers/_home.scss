@@ -1,12 +1,30 @@
 .home .lander {
     padding: 80px 0;
     text-align: center;
-  }
+}
   
-  .home .lander h1 {
-    font-weight: 600;
-  }
-  
-  .home .lander p {
-    color: #999;
-  }
+.home .lander h1 {
+  font-weight: 600;
+}
+
+.home .lander p {
+  color: rgb(239, 239, 239);
+}
+
+#fpl-live-table {
+  margin-top: 5%;
+  margin-left:5%; 
+  margin-right:5%;
+  text-align: center;
+  width: 90%
+}
+
+#fpl-live-table .tr {
+  border-bottom: 1px solid rgb(239, 239, 239);
+}
+
+
+#table-header {
+  background-color: rgb(239, 239, 239);
+  border-bottom: 2px solid $primary;
+}

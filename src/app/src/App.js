@@ -14,7 +14,8 @@ class App extends Component {
       isAuthenticating: true,
       playerName: null,
       playerLeagues: [],
-      selectedLeague: "Select a league"
+      selectedLeagueName: "Select a league",
+      selectedLeagueID: null
     };
   }
   async componentDidMount() {
@@ -24,7 +25,9 @@ class App extends Component {
       localStorage.getItem('playerName') && 
       localStorage.getItem('playerLeagues')
       ) {
-        this.setPlayerData(localStorage.getItem('playerName'), JSON.parse(localStorage.getItem('playerLeagues')));
+        let leagues = JSON.parse(localStorage.getItem('playerLeagues'));
+        this.setPlayerData(localStorage.getItem('playerName'), leagues);
+        this.setSelectedLeague(localStorage.getItem('selectedLeagueID'), leagues);
         this.userHasAuthenticated(true);
     };
     this.setState({ isAuthenticating: false });
@@ -45,10 +48,18 @@ class App extends Component {
     this.userHasAuthenticated(false);
     this.props.history.push("/login");
   }
-  setSelectedLeague = (eventKey, event) => {
+  setSelectedLeague(id, leagues){
+    var league = leagues.find(league => {
+      return league.id === parseInt(id)
+    })
     this.setState({
-      "selectedLeague": eventKey
+      "selectedLeagueName": league.name,
+      "selectedLeagueID": league.id
     });
+    localStorage.setItem('selectedLeagueID', league.id);
+  }
+  handleLeagueSelect = (eventKey, event) => {
+    this.setSelectedLeague(eventKey, this.state.playerLeagues)
   }
   render() {
     const childProps = {
@@ -67,9 +78,9 @@ class App extends Component {
           <Nav>
             {this.state.isAuthenticated
               ? [
-                <NavDropdown key="nav-dropdown" className="mr-4" title={this.state.selectedLeague} id="basic-nav-dropdown" onSelect={this.setSelectedLeague}>
+                <NavDropdown key="nav-dropdown" className="mr-4" title={this.state.selectedLeagueName} id="basic-nav-dropdown" onSelect={this.handleLeagueSelect}>
                   {this.state.playerLeagues.map((item, index) => (
-                    <NavDropdown.Item eventKey={item.name} href="#" key={item.id} value={item.name}>{item.name}</NavDropdown.Item>
+                    <NavDropdown.Item eventKey={item.id} href="#" key={item.id}>{item.name}</NavDropdown.Item>
                   ))}
                 </NavDropdown>,
                 <Nav.Link key="login-link" onClick={this.handleLogout} className="btn btn-outline-secondary">Logout</Nav.Link>
