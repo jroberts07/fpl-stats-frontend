@@ -8,7 +8,7 @@ export default class Home extends Component {
     super(props);
     this.state = {
       leagueTable: [],
-      displayTable: "ERROR"
+      displayTable: ""
     };
   }
 
@@ -23,11 +23,22 @@ export default class Home extends Component {
         });
   }
 
+  getMovementImage(entry) {
+    if (entry.live_rank < entry.confirmed_rank) {
+      return <img src="images/up_pos.png" alt="+" height="20!important" width="20!important"></img>
+    } 
+    else if (entry.live_rank > entry.confirmed_rank) {
+      return <img src="images/down_pos.png" alt="*" height="20!important" width="20!important"></img>
+    }
+    else {
+      return <img src="images/same_pos.png" alt="-" height="20!important" width="20!important"></img>
+    }
+  }
+
   renderTableHeader() {
     return [
       <th key="rank">Rank</th>,
       <th key="entry_name">Team</th>,
-      <th key="player_name">Player</th>,
       <th key="gameweek_points">Gameweek</th>,
       <th key="total_points">Total</th>
     ]
@@ -36,12 +47,11 @@ export default class Home extends Component {
   renderTableData() {
     return this.state.leagueTable.map((entry, index) => { 
        return (
-          <tr key={entry.entry_name}>
-             <td>{entry.rank}</td>
-             <td>{entry.entry_name}</td>
-             <td>{entry.player_name}</td>
-             <td>{entry.gameweek_points}</td>
-             <td>{entry.total_points}</td>
+          <tr key={entry.entry_id} className={this.props.playerId == entry.entry_id ? "selected":""}>
+             <td>{this.getMovementImage(entry)}{entry.live_rank}</td>
+             <td><b className="name">{entry.entry_name}</b><p>{entry.player_name}</p></td>
+             <td>{entry.live_points - entry.total_points}</td>
+             <td>{entry.live_points}</td>
           </tr>
        )
     })

@@ -13,6 +13,7 @@ class App extends Component {
       isAuthenticated: false,
       isAuthenticating: true,
       playerName: null,
+      playerId: null,
       playerLeagues: [],
       selectedLeagueName: "Select a league",
       selectedLeagueID: null
@@ -23,10 +24,11 @@ class App extends Component {
       localStorage.getItem('entryId') && 
       localStorage.getItem('playerCookie') && 
       localStorage.getItem('playerName') && 
+      localStorage.getItem('playerId') && 
       localStorage.getItem('playerLeagues')
       ) {
         let leagues = JSON.parse(localStorage.getItem('playerLeagues'));
-        this.setPlayerData(localStorage.getItem('playerName'), leagues);
+        this.setPlayerData(localStorage.getItem('playerName'), parseInt(localStorage.getItem('playerId')), leagues);
         this.setSelectedLeague(localStorage.getItem('selectedLeagueID'), leagues);
         this.userHasAuthenticated(true);
     };
@@ -35,10 +37,11 @@ class App extends Component {
   userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });
   }
-  setPlayerData = (playerName, playerLeagues) => {
+  setPlayerData = (playerName, playerId, playerLeagues) => {
     this.setState(
       {
         playerName: playerName,
+        playerId: playerId,
         playerLeagues: playerLeagues
       }
     )
@@ -60,11 +63,13 @@ class App extends Component {
   }
   handleLeagueSelect = (eventKey, event) => {
     this.setSelectedLeague(eventKey, this.state.playerLeagues)
+    window.location.reload();
   }
   render() {
     const childProps = {
       isAuthenticated: this.state.isAuthenticated,
       playerName: this.state.playerName,
+      playerId: this.state.playerId,
       userHasAuthenticated: this.userHasAuthenticated,
       setPlayerData: this.setPlayerData
     };

@@ -8,7 +8,7 @@
 }
 
 .home .lander p {
-  color: rgb(239, 239, 239);
+  color: $sub-menu-color;
 }
 
 #fpl-live-table {
@@ -17,6 +17,26 @@
   margin-right:5%;
   text-align: center;
   width: 90%
+}
+
+#fpl-live-table img {
+  height: 20px;
+  width: 20px;
+  display: inline;
+  margin-right: 5px;
+}
+
+#fpl-live-table .selected {
+  background-color: $nav-color;
+  color: $text-color;
+}
+
+#fpl-live-table .selected .name{
+  color: rgb(0, 255, 135);
+}
+
+#fpl-live-table p {
+  margin-bottom: 0px;
 }
 
 #fpl-live-table .tr {
