@@ -1,12 +1,50 @@
 .home .lander {
     padding: 80px 0;
     text-align: center;
-  }
+}
   
-  .home .lander h1 {
-    font-weight: 600;
-  }
-  
-  .home .lander p {
-    color: #999;
-  }
+.home .lander h1 {
+  font-weight: 600;
+}
+
+.home .lander p {
+  color: $sub-menu-color;
+}
+
+#fpl-live-table {
+  margin-top: 5%;
+  margin-left:5%; 
+  margin-right:5%;
+  text-align: center;
+  width: 90%
+}
+
+#fpl-live-table img {
+  height: 20px;
+  width: 20px;
+  display: inline;
+  margin-right: 5px;
+}
+
+#fpl-live-table .selected {
+  background-color: $nav-color;
+  color: $text-color;
+}
+
+#fpl-live-table .selected .name{
+  color: rgb(0, 255, 135);
+}
+
+#fpl-live-table p {
+  margin-bottom: 0px;
+}
+
+#fpl-live-table .tr {
+  border-bottom: 1px solid rgb(239, 239, 239);
+}
+
+
+#table-header {
+  background-color: rgb(239, 239, 239);
+  border-bottom: 2px solid $primary;
+}

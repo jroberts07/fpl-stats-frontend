@@ -31,14 +31,16 @@ export default class Login extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
+    localStorage.clear();
     FplStatsApi.entryData(this.state.entryId, this.state.playerCookie)
       .then((rsp) => {
         localStorage.setItem('entryId', this.state.entryId);
         localStorage.setItem('playerCookie', this.state.playerCookie);
         localStorage.setItem('playerName', rsp.data.name)
+        localStorage.setItem('playerId', parseInt(this.state.entryId))
         localStorage.setItem('playerLeagues', JSON.stringify(rsp.data.leagues))
         this.props.userHasAuthenticated(true);
-        this.props.setPlayerData(rsp.data.name, rsp.data.leagues);
+        this.props.setPlayerData(rsp.data.name, parseInt(this.state.entryId), rsp.data.leagues);
         this.props.history.push("/");
       })
       .catch(() => {

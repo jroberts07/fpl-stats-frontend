@@ -5,7 +5,11 @@ const apiClient = axios.create({
 })
 
 export default {
-    entryData(EntryId, playerCookie) {
-            return apiClient.get(`/entry_data/${EntryId}?player_cookie=${playerCookie}`)
-        }
+    entryData(entryId, playerCookie) {
+            return apiClient.get(`/entry_data/${entryId}?player_cookie=${playerCookie}`)
+    },
+
+    leagueTable(leagueId, playerCookie) {
+        return apiClient.get(`/league_table/${leagueId}?player_cookie=${playerCookie}`)
+    }
 }
