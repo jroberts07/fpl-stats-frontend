@@ -21,18 +21,30 @@ class App extends Component {
   }
   async componentDidMount() {
     if (
-      localStorage.getItem('entryId') && 
-      localStorage.getItem('playerCookie') && 
-      localStorage.getItem('playerName') && 
-      localStorage.getItem('playerId') && 
-      localStorage.getItem('playerLeagues')
-      ) {
+      localStorage.getItem('playerLeagues') &&
+      localStorage.getItem('playerName') &&
+      localStorage.getItem('playerId') &&
+      localStorage.getItem('playerCookie') &&
+      localStorage.getItem('selectedLeagueID')
+    ) { 
+      try {
         let leagues = JSON.parse(localStorage.getItem('playerLeagues'));
         this.setPlayerData(localStorage.getItem('playerName'), parseInt(localStorage.getItem('playerId')), leagues);
         this.setSelectedLeague(localStorage.getItem('selectedLeagueID'), leagues);
         this.userHasAuthenticated(true);
-    };
-    this.setState({ isAuthenticating: false });
+      }
+      catch(error) {
+        this.userHasAuthenticated(false);
+      }
+      finally {
+        this.setState({ isAuthenticating: false });
+      }
+    }
+    else {
+      this.userHasAuthenticated(false);
+      this.setState({ isAuthenticating: false });
+    }
+    
   }
   userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });
@@ -47,7 +59,7 @@ class App extends Component {
     )
   }
   handleLogout = async event => {
-    localStorage.removeItem('entryId')
+    localStorage.clear();
     this.userHasAuthenticated(false);
     this.props.history.push("/login");
   }
