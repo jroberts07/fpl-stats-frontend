@@ -1,0 +1,100 @@
+#fpl-stats .app {
+    @import "./variables";
+
+    // Required
+    @import "node_modules/bootstrap/scss/functions";
+    @import "node_modules/bootstrap/scss/variables";
+    @import "node_modules/bootstrap/scss/mixins";
+    
+    @import "./containers/home";
+    @import "./containers/login";
+    @import "./containers/notFound";
+    
+    // Body 
+    margin-top: 15px;
+    font-family: PremierSans-Regular, Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    .navbar-light .navbar-brand {
+        font-weight: bold;
+        color: $text-color;
+    } 
+
+    .navbar-light .navbar-brand:hover {
+        color: $text-color;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: PremierSans-Bold, Arial, "Helvetica Neue", Helvetica, sans-seriff;
+    }
+    
+    select.form-control,
+    textarea.form-control,
+    input.form-control {
+        font-size: 16px;
+    }
+    input[type=file] {
+        width: 100%;
+    }
+
+    .navbar {
+        background-color: $nav-color;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: $text-color;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        color: $text-color;
+    }
+
+    .navbar-light .navbar-nav .nav-link:focus {
+        color: $text-color;
+    }
+    
+    .navbar a.dropdown-item{
+        color: $text-color;
+    }
+
+    .navbar a.dropdown-item.active{
+        background-color: $sub-menu-color;
+    }
+
+    .navbar a.dropdown-item:hover{
+        background-color: $sub-menu-color;
+        text-decoration: underline;
+    }
+
+    .navbar-nav .dropdown-menu {
+        background-color: $sub-menu-color;
+        margin-top: 0.4em;
+        margin-bottom: 0.4em;
+    }
+
+    .navbar-light .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(5,240,255,0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+      }
+      
+      .navbar-light .navbar-toggler {
+        border-color: $secondary;
+      } 
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    video {
+    display: block;
+    width: 100%;
+    height: auto;
+    }
+
+    
+      
+}
