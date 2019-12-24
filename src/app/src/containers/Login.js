@@ -31,6 +31,7 @@ export default class Login extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
+    localStorage.clear();
     FplStatsApi.entryData(this.state.entryId, this.state.playerCookie)
       .then((rsp) => {
         localStorage.setItem('entryId', this.state.entryId);

@@ -19,7 +19,12 @@ export default class Home extends Component {
           this.setState({ displayTable: "SHOW" });
         })
         .catch(() => {
-          this.setState({ displayTable: "ERROR" });
+          if (localStorage.getItem('selectedLeagueID')) {
+            this.setState({ displayTable: "ERROR" });
+          } 
+          else {
+            this.setState({ displayTable: "NONE_SELECTED" });
+          }
         });
   }
 
